@@ -40,7 +40,6 @@ Window {
                 id: itemItem
                 anchors.fill: parent
                 anchors.margins: 10
-                //anchors.centerIn: parent
                 implicitWidth: column.implicitWidth
                 implicitHeight: column.implicitHeight
                 Column {
