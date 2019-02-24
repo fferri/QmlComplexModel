@@ -18,17 +18,13 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     QQmlObjectListModel<Item> items;
-
-    //QList<Item*> items;
-    QList<Tag*> tags1;
-    tags1.append(new Tag("Tag 1", "red"));
-    tags1.append(new Tag("Tag 2", "green"));
-    tags1.append(new Tag("Tag 3", "blue"));
-    items.append(new Item("Item 1", tags1));
-    QList<Tag*> tags2;
-    tags2.append(new Tag("Tag 4", "yellow"));
-    tags2.append(new Tag("Tag 5", "magenta"));
-    items.append(new Item("Item 2", tags2));
+    items.append(new Item("Item 1", QList<Tag*>()
+            << new Tag("Tag 1", "red")
+            << new Tag("Tag 2", "green")
+            << new Tag("Tag 3", "blue")));
+    items.append(new Item("Item 2", QList<Tag*>()
+            << new Tag("Tag 4", "yellow")
+            << new Tag("Tag 5", "magenta")));
 
     engine.rootContext()->setContextProperty("myModel", QVariant::fromValue(&items));
 
