@@ -74,6 +74,7 @@ Window {
         model: myModel
         focus: true
         delegate: itemDelegate
+        onFocusChanged: listView.focus = true
     }
 
     Button {
