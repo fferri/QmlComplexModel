@@ -20,28 +20,15 @@ int main(int argc, char *argv[])
     QQmlObjectListModel<Item> items;
 
     //QList<Item*> items;
-    for(int i = 0; i < 2; i++)
-        items.append(new Item);
-    items.at(0)->setName("Item 1");
     QList<Tag*> tags1;
-    for(int i = 0; i < 3; i++)
-        tags1.append(new Tag);
-    tags1[0]->setTagName("Tag 1");
-    tags1[0]->setTagColor("red");
-    tags1[1]->setTagName("Tag 2");
-    tags1[1]->setTagColor("green");
-    tags1[2]->setTagName("Tag 3");
-    tags1[2]->setTagColor("blue");
-    items.at(0)->setTags(tags1);
-    items.at(1)->setName("Item 2");
+    tags1.append(new Tag("Tag 1", "red"));
+    tags1.append(new Tag("Tag 2", "green"));
+    tags1.append(new Tag("Tag 3", "blue"));
+    items.append(new Item("Item 1", tags1));
     QList<Tag*> tags2;
-    for(int i = 0; i < 2; i++)
-        tags2.append(new Tag);
-    tags2[0]->setTagName("Tag 4");
-    tags2[0]->setTagColor("red");
-    tags2[1]->setTagName("Tag 5");
-    tags2[1]->setTagColor("blue");
-    items.at(1)->setTags(tags2);
+    tags2.append(new Tag("Tag 4", "yellow"));
+    tags2.append(new Tag("Tag 5", "magenta"));
+    items.append(new Item("Item 2", tags2));
 
     engine.rootContext()->setContextProperty("myModel", QVariant::fromValue(&items));
 

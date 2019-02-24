@@ -1,7 +1,9 @@
 #include "tag.h"
 
-Tag::Tag(QObject *parent)
-    : QObject(parent)
+Tag::Tag(const QString &name, const QString &color, QObject *parent)
+    : QObject(parent),
+      name_(name),
+      color_(color)
 {
 }
 

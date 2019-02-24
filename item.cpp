@@ -1,8 +1,11 @@
 #include "item.h"
 
-Item::Item(QObject *parent)
-    : QObject(parent)
+Item::Item(const QString &name, const QList<Tag*> &tags, QObject *parent)
+    : QObject(parent),
+      name_(name)
 {
+    for(auto tag : tags)
+        tags_.append(tag);
 }
 
 QString Item::name() const
@@ -19,16 +22,14 @@ void Item::setName(const QString &name)
     }
 }
 
-QList<Tag *> Item::tags()
+QQmlObjectListModelBase * Item::tags()
 {
-    return tags_;
+    return &tags_;
 }
 
-void Item::setTags(const QList<Tag *> &tags)
+void Item::setTags(QQmlObjectListModelBase *tags)
 {
-    if(tags != tags_)
-    {
-        tags_ = tags;
-        emit tagsChanged(tags_);
-    }
+    tags_.clear();
+    for(int i = 0; i < tags->count(); i++)
+        tags_.append(tags->get(i));
 }

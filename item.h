@@ -2,28 +2,29 @@
 #define ITEM_H
 
 #include <QObject>
+#include "QQmlObjectListModel.h"
 #include "tag.h"
 
 class Item : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-    Q_PROPERTY(QList<Tag*> tags READ tags WRITE setTags NOTIFY tagsChanged)
+    Q_PROPERTY(QQmlObjectListModelBase *tags READ tags WRITE setTags NOTIFY tagsChanged)
 
 public:
-    Item(QObject *parent = nullptr);
+    Item(const QString &name, const QList<Tag*> &tags, QObject *parent = nullptr);
     QString name() const;
     void setName(const QString &name);
-    QList<Tag*> tags();
-    void setTags(const QList<Tag*> &tags);
+    QQmlObjectListModelBase * tags();
+    void setTags(QQmlObjectListModelBase *tags);
 
 signals:
     void nameChanged(const QString &name);
-    void tagsChanged(const QList<Tag*> &tags);
+    void tagsChanged(QQmlObjectListModelBase *tags);
 
 private:
     QString name_;
-    QList<Tag*> tags_;
+    QQmlObjectListModel<Tag> tags_;
 };
 
 #endif // ITEM_H

@@ -10,7 +10,7 @@ class Tag : public QObject
     Q_PROPERTY(QString tagColor READ tagColor WRITE setTagColor NOTIFY tagColorChanged)
 
 public:
-    Tag(QObject *parent = nullptr);
+    Tag(const QString &name, const QString &color, QObject *parent = nullptr);
     QString tagName() const;
     void setTagName(const QString &name);
     QString tagColor() const;

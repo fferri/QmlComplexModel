@@ -43,7 +43,7 @@ Window {
                     id: column
                     spacing: 10
                     Text {
-                        text: name
+                        text: model.name
                     }
                     Flow {
                         width: itemItem.width
@@ -63,27 +63,10 @@ Window {
         }
     }
 
-    Component.onCompleted: {
-        console.log("myModel: " + myModel)
-        console.log("myModel.count: " + myModel.count)
-    }
-
-    ListModel {
-       id: listModel
-       ListElement {
-           name: "apple"
-           tags: [ListElement {tagName: "juicy"; tagColor: "blue"}, ListElement {tagName: "red"; tagColor: "red"}, ListElement {tagName: "round"; tagColor: "blue"}]
-       }
-       ListElement {
-           name: "banana"
-           tags: [ListElement {tagName: "yellow"; tagColor: "#a90"}, ListElement {tagName: "straight"; tagColor: "blue"}]
-       }
-    }
-
     ListView {
         id: listView
         anchors.fill: parent
-        model: 1 ? myModel : listModel
+        model: myModel
         focus: true
         delegate: itemDelegate
     }
