@@ -22,14 +22,7 @@ void Item::setName(const QString &name)
     }
 }
 
-QQmlObjectListModelBase * Item::tags()
+QQmlObjectListModel<Tag> * Item::tags()
 {
     return &tags_;
-}
-
-void Item::setTags(QQmlObjectListModelBase *tags)
-{
-    tags_.clear();
-    for(int i = 0; i < tags->count(); i++)
-        tags_.append(tags->get(i));
 }
