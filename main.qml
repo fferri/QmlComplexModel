@@ -1,11 +1,15 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
+import QtQuick.Controls 2.4
 
 Window {
+    id: mainWindow
     visible: true
     width: 640
     height: 480
     title: qsTr("Hello World")
+
+    signal test
 
     Component {
         id: tagDelegate
@@ -66,8 +70,16 @@ Window {
     ListView {
         id: listView
         anchors.fill: parent
+        anchors.bottomMargin: testButton.height
         model: myModel
         focus: true
         delegate: itemDelegate
+    }
+
+    Button {
+        id: testButton
+        anchors.top: listView.bottom
+        text: "Test"
+        onClicked: test()
     }
 }

@@ -16,7 +16,8 @@ SOURCES += \
         main.cpp \
     QQmlObjectListModel.cpp \
     tag.cpp \
-    item.cpp
+    item.cpp \
+    myproxy.cpp
 
 RESOURCES += qml.qrc
 
@@ -34,4 +35,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     QQmlObjectListModel.h \
     tag.h \
-    item.h
+    item.h \
+    myproxy.h

@@ -5,6 +5,7 @@
 
 #include "QQmlObjectListModel.h"
 #include "item.h"
+#include "myproxy.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,12 +26,15 @@ int main(int argc, char *argv[])
     items.append(new Item("Item 2", QList<Tag*>()
             << new Tag("Tag 4", "yellow")
             << new Tag("Tag 5", "magenta")));
+    MyProxy myProxy(&items);
 
     engine.rootContext()->setContextProperty("myModel", QVariant::fromValue(&items));
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if(engine.rootObjects().isEmpty())
         return -1;
+
+    QObject::connect(engine.rootObjects()[0], SIGNAL(test()), &myProxy, SLOT(test()));
 
     return app.exec();
 }
