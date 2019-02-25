@@ -19,11 +19,11 @@ void MyProxy::test()
     case 1:
         // add a tag to an item
         model_->at(model_->count() - 1)->tags()->append(new Tag("Foo", "gray"));
-        model_->at(model_->count() - 1)->tags()->append(new Tag("Bar", "cyan"));
+        model_->at(model_->count() - 1)->tags()->append(new Tag("Bar", "navy"));
         break;
     case 2:
         // remove a tag
-        model_->at(model_->count() - 1)->tags()->remove(1);
+        model_->at(model_->count() - 1)->tags()->remove(0);
         break;
     case 3:
         // remove an item

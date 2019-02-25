@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
             << new Tag("Tag 2", "green")
             << new Tag("Tag 3", "blue")));
     items.append(new Item("Item 2", QList<Tag*>()
-            << new Tag("Tag 4", "yellow")
+            << new Tag("Tag 4", "orange")
             << new Tag("Tag 5", "magenta")));
     MyProxy myProxy(&items);
 

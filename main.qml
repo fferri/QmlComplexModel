@@ -7,7 +7,7 @@ Window {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Complex Model Demo")
 
     signal test
 
@@ -16,6 +16,7 @@ Window {
         Rectangle {
             property int margin: 5
             color: tagColor
+            border.color: Qt.rgba(0, 0, 0, 0.33)
             radius: height / 2
             width: tagText.width + 3 * margin
             height: tagText.height + 2 * margin
@@ -25,6 +26,7 @@ Window {
                 text: tagName
                 anchors.centerIn: parent
                 font.bold: true
+                font.pixelSize: 11
             }
         }
     }
@@ -32,11 +34,17 @@ Window {
     Component {
         id: itemDelegate
         Rectangle {
-            color: ListView.isCurrentItem ? "#eee" : "transparent"
+            id: itemRect
+            property string normalColor: "#80ffffff"
+            property string selectionColor: "#603366cc"
+            gradient: Gradient {
+                GradientStop { position: 0; color: Qt.tint("#fff", itemRect.ListView.isCurrentItem ? itemRect.selectionColor : itemRect.normalColor) }
+                GradientStop { position: 1; color: Qt.tint("#aaa", itemRect.ListView.isCurrentItem ? itemRect.selectionColor : itemRect.normalColor) }
+            }
+            border.color: ListView.isCurrentItem ? Qt.tint("#aaa", selectionColor) : "transparent"
             width: parent.width
             implicitHeight: itemItem.implicitHeight + 20
-            Rectangle {
-                color: "#cfc"
+            Item {
                 id: itemItem
                 anchors.fill: parent
                 anchors.margins: 10
@@ -74,6 +82,7 @@ Window {
         focus: true
         delegate: itemDelegate
         onFocusChanged: listView.focus = true
+        clip: true
     }
 
     Button {
